@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formation Manga - DyScriptum</title>
+    <meta name="description" content="Apprenez à dessiner des mangas avec nos formations professionnelles">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            --var-primary-color: #FF3E4D; /* Rouge manga */
+            --var-secondary-color: #FF9E3F; /* Orange vif */
+            --var-accent-color: #4A90E2; /* Bleu manga */
+            --var-dark-color: #2E2E3A; /* Fond sombre */
+            --var-light-color: #FFF5F0; /* Fond clair */
+            --var-text-color: #333;
+            --var-text-light: #fff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--var-light-color);
+            color: var(--var-text-color);
+            line-height: 1.6;
+        }
+
+        /* Style du header */
+        header {
+            height: 80px;
+            background-color: var(--var-dark-color);
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-weight: 700;
+            color: var(--var-primary-color);
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+        }
+
+        header h1 span {
+            color: var(--var-text-light);
+        }
+
+        header nav ul {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        header nav ul li a {
+            text-decoration: none;
+            color: var(--var-text-light);
+            font-weight: 500;
+            transition: 0.3s;
+            cursor: pointer;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        header nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--var-primary-color);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+
+        header nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        header nav ul li a:hover {
+            color: var(--var-primary-color);
+        }
+
+        header button {
+            background-color: var(--var-primary-color);
+            color: var(--var-text-light);
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(255, 62, 77, 0.3);
+        }
+
+        header button:hover {
+            background-color: var(--var-secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(255, 158, 63, 0.4);
+        }
+
+        /* Section Hero */
+        #hero {
+            width: 100%;
+            min-height: 80vh;
+            border-radius: 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--var-dark-color) 0%, #3A3A4A 100%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,62,77,0.1)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>') repeat;
+            opacity: 0.3;
+        }
+
+        #hero .gauche {
+            flex: 1;
+            padding: 2rem;
+            z-index: 10;
+        }
+
+        #hero .gauche h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--var-text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        #hero .gauche h1 span {
+            color: var(--var-primary-color);
+        }
+
+        #hero .gauche p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        #hero .gauche .cta-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        #hero .gauche button {
+            background-color: var(--var-primary-color);
+            color: var(--var-text-light);
+            border: none;
+            margin-top: 0;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(255, 62, 77, 0.3);
+        }
+
+        #hero .gauche button.secondary {
+            background-color: transparent;
+            border: 2px solid var(--var-text-light);
+            color: var(--var-text-light);
+        }
+
+        #hero .gauche button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(255, 62, 77, 0.4);
+        }
+
+        #hero .gauche button.secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .droite {
+            flex: 1;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .droite img {
+            max-width: 80%;
+            height: auto;
+            object-fit: contain;
+            z-index: 10;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .effets {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            overflow: hidden;
+        }
+
+        .effets .cercle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            animation: animation 8s ease-in infinite;
+            opacity: 0.2;
+        }
+
+        .cercle:nth-child(1) {
+            background: var(--var-primary-color);
+            position: absolute;
+            right: 10%;
+            top: 20%;
+            animation-delay: 1s;
+        }
+
+        .cercle:nth-child(2) {
+            background: var(--var-secondary-color);
+            position: absolute;
+            left: 15%;
+            bottom: 15%;
+            animation-delay: 0.5s;
+        }
+
+        .cercle:nth-child(3) {
+            background: var(--var-accent-color);
+            position: absolute;
+            top: 40%;
+            left: 30%;
+            animation-delay: 2s;
+        }
+
+        @keyframes animation {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(100px) rotate(180deg); }
+            100% { transform: translateY(0) rotate(360deg); }
+        }
+
+        /* Section Services */
+        #services {
+            margin: 5rem auto;
+            max-width: 1200px;
+            padding: 0 2rem;
+        }
+
+        #services h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--var-dark-color);
+            margin-bottom: 1rem;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #services h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--var-primary-color), var(--var-secondary-color));
+            border-radius: 2px;
+        }
+
+        #services .services-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .services-list .card-service {
+            flex: 1 1 300px;
+            max-width: 350px;
+            background-color: white;
+            padding: 2rem 1.5rem;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid var(--var-primary-color);
+        }
+
+        .card-service:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-service .icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--var-primary-color), var(--var-secondary-color));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px;
+            position: absolute;
+            top: -35px;
+            left: 1.5rem;
+            box-shadow: 0 10px 20px rgba(255, 62, 77, 0.3);
+        }
+
+        .card-service .icon i {
+            font-size: 1.8rem;
+            color: var(--var-text-light);
+        }
+
+        .card-service h3 {
+            margin-top: 2rem;
+            font-size: 1.5rem;
+            color: var(--var-dark-color);
+            margin-bottom: 1rem;
+        }
+
+        .card-service p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Section Album */
+        #album {
+            margin: 5rem auto;
+            max-width: 1200px;
+            padding: 0 2rem;
+        }
+
+        #album h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--var-dark-color);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #album h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--var-primary-color), var(--var-secondary-color));
+            border-radius: 2px;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .photo-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            aspect-ratio: 1/1;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.03);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .photo-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Section Contact */
+        #contact {
+            background-color: var(--var-dark-color);
+            color: var(--var-text-light);
+            padding: 5rem 2rem;
+            margin-top: 5rem;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .partie1 h2, .partie2 h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--var-primary-color);
+        }
+
+        .partie1 p {
+            margin-bottom: 1rem;
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        .partie2 form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .partie2 input, .partie2 textarea {
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--var-text-light);
+            font-family: 'Poppins', sans-serif;
+            transition: background-color 0.3s;
+        }
+
+        .partie2 input::placeholder, .partie2 textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .partie2 input:focus, .partie2 textarea:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .partie2 textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .partie2 button {
+            background-color: var(--var-primary-color);
+            color: var(--var-text-light);
+            border: none;
+            padding: 1rem;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 0.5rem;
+        }
+
+        .partie2 button:hover {
+            background-color: var(--var-secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1E1E24;
+            color: var(--var-text-light);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--var-text-light);
+            font-size: 1.5rem;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--var-primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            #hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 4rem 2rem;
+            }
+
+            #hero .gauche {
+                margin-bottom: 3rem;
+            }
+
+            #hero .gauche p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            #hero .gauche .cta-buttons {
+                justify-content: center;
+            }
+
+            .droite img {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                height: auto;
+                padding: 1rem;
+            }
+
+            header nav ul {
+                margin: 1rem 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            #hero .gauche h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1><span>Dy</span>Scriptum</h1>
+        <nav>
+            <ul>
+                <li><a href="premierePage.html">Accueil</a></li>
+                <li><a href="">A propos</a></li>
+                <li><a href="mailto:dyalexandre685@gmail.com">Contact</a></li>
+                <li><a href="#formation">Formation</a></li>
+            </ul>
+        </nav>
+        <button>Connectez-vous</button>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="gauche">
+                <h1>Devenez un <span>Mangaka</span> Professionnel</h1>
+                <p>Apprenez les techniques des plus grands dessinateurs de manga avec nos formations complètes. Que vous soyez débutant ou confirmé, nos cours vous permettront de maîtriser le style manga et de développer votre propre univers.</p>
+                <div class="cta-buttons">
+                    <button>Commencer maintenant</button>
+                    <button class="secondary">Voir les formations</button>
+                </div>
+            </div>
+            <div class="droite">
+                <img src="assets/bg1.png " alt="Personnage manga stylisé">
+                <div class="effets">
+                    <div class="cercle"></div>
+                    <div class="cercle"></div>
+                    <div class="cercle"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services">
+            <h2>Nos Formations</h2>
+            <div class="services-list">
+                <div class="card-service">
+                    <div class="icon">
+                        <i class="fa-solid fa-pencil"></i>
+                    </div>
+                    <h3>Dessin Manga</h3>
+                    <p>Maîtrisez les bases du dessin manga : proportions du visage, expressions, corps humain. Apprenez les techniques de nos experts pour créer des personnages uniques et expressifs.</p>
+                </div>
+                <div class="card-service">
+                    <div class="icon">
+                        <i class="fa-solid fa-paintbrush"></i>
+                    </div>
+                    <h3>Encrage & Colorisation</h3>
+                    <p>Découvrez les méthodes professionnelles d'encrage au stylo et à la plume, ainsi que les techniques de colorisation numérique pour donner vie à vos créations.</p>
+                </div>
+                <div class="card-service">
+                    <div class="icon">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+                    <h3>Storytelling</h3>
+                    <p>Apprenez à construire une histoire captivante, créer des scénarios percutants et organiser vos planches pour un récit fluide et dynamique typique des mangas.</p>
+                </div>
+                <div class="card-service">
+                    <div class="icon">
+                        <i class="fa-solid fa-laptop"></i>
+                    </div>
+                    <h3>Digital Painting</h3>
+                    <p>Formation complète aux outils numériques (Clip Studio Paint, Photoshop) pour créer des mangas directement sur ordinateur avec des résultats professionnels.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="album">
+            <h2>Galerie d'Étudiants</h2>
+            <div class="photo-grid">
+                <div class="photo-item">
+                    <img src="assets/1.jpeg" alt="Dessin manga étudiant 1">
+                </div>
+                <div class="photo-item">
+                    <img src="assets/2.jpeg" alt="Dessin manga étudiant 2">
+                </div>
+                <div class="photo-item">
+                    <img src="assets/3.jpeg" alt="Dessin manga étudiant 3">
+                </div>
+                <div class="photo-item">
+                    <img src="assets/4.jpeg" alt="Dessin manga étudiant 4">
+                </div>
+                <div class="photo-item">
+                    <img src="assets/5.jpeg" alt="Dessin manga étudiant 5">
+                </div>
+                
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="contact-container">
+                <div class="partie1">
+                    <h2>Notre École</h2>
+                    <p>DyScriptum est une école spécialisée dans l'enseignement des techniques de manga. Fondée par des professionnels du secteur, notre mission est de rendre accessible l'apprentissage du manga à tous, tout en maintenant des standards professionnels.</p>
+                    <p>Nos formations sont adaptées à tous les niveaux et s'appuient sur une méthodologie éprouvée qui a déjà formé des centaines d'étudiants à travers le monde.</p>
+                </div>
+                <div class="partie2">
+                    <h2>Contactez-nous</h2>
+                    <form action="" method="post">
+                        <input type="text" name="name" placeholder="Votre nom" required>
+                        <input type="email" name="email" placeholder="Votre email" required>
+                        <textarea name="message" placeholder="Votre message" required></textarea>
+                        <button type="submit">Envoyer</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>© DyScriptum 2025 - Tous droits réservés</p>
+        <div class="social-links">
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#"><i class="fa-brands fa-discord"></i></a>
+        </div>
+    </footer>
+
+</body>
+
+</html>
